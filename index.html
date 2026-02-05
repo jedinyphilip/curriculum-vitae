@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Filip Jediný | CV</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-color: #6366f1; 
+            --text-dark: #111827;
+            --text-muted: #6b7280;
+        }
+
+        body {
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+            background-color: #f3f4f6;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        /* UI CONTROLS */
+        .nav-tools {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            display: flex;
+            gap: 12px;
+        }
+
+        .btn-tool {
+            background: white;
+            border: 1px solid #d1d5db;
+            padding: 10px 22px;
+            border-radius: 30px;
+            font-size: 14px;
+            font-weight: 700;
+            cursor: pointer;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        }
+
+        /* CV CONTAINER */
+        .cv-container {
+            max-width: 900px;
+            margin: 40px auto;
+            background: white;
+            padding: 60px 80px;
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+
+        header {
+            text-align: center;
+            border-bottom: 2px solid #f3f4f6;
+            margin-bottom: 35px;
+            padding-bottom: 25px;
+        }
+
+        h1 { font-size: 3.5rem; font-weight: 900; margin: 0; letter-spacing: -0.05em; color: #000; }
+        .subtitle { font-size: 1.4rem; color: var(--text-muted); font-weight: 500; margin-bottom: 15px; }
+
+        /* CONTACT BAR FIX: Adjusted gap and font-size to stay on one line */
+        .contact-bar {
+            display: flex;
+            justify-content: center;
+            flex-wrap: nowrap; /* Prevent wrapping */
+            gap: 15px;
+            font-size: 0.88rem; /* Slightly smaller to fit width */
+            white-space: nowrap;
+        }
+        .contact-bar a { color: inherit; text-decoration: none; font-weight: 600; }
+        .contact-bar i { color: var(--primary-color); }
+
+        .section-title {
+            font-size: 1.1rem;
+            font-weight: 800;
+            color: var(--primary-color);
+            text-transform: uppercase;
+            border-bottom: 2px solid #f3f4f6;
+            margin-top: 45px;
+            margin-bottom: 20px;
+            padding-bottom: 8px;
+            letter-spacing: 0.05em;
+        }
+
+        .entry { margin-bottom: 30px; break-inside: avoid; }
+        .entry-header { 
+            display: flex; 
+            justify-content: space-between; 
+            align-items: flex-start; 
+            width: 100%;
+        }
+        .entry-title { font-size: 1.2rem; font-weight: 800; color: #000; }
+        .entry-sub { font-style: italic; color: var(--text-muted); font-size: 1rem; margin-bottom: 10px; display: block; }
+        .entry-date { font-weight: 800; font-size: 1.05rem; white-space: nowrap; margin-left: 20px; }
+
+        ul { padding-left: 1.2rem; }
+        li { margin-bottom: 6px; }
+
+        .project-box {
+            background: #fafafa;
+            border-left: 6px solid var(--primary-color);
+            padding: 20px 25px;
+            margin-bottom: 20px;
+            break-inside: avoid;
+        }
+        .project-title-row { display: flex; justify-content: space-between; align-items: baseline; margin-bottom: 10px; }
+        .project-link { font-weight: 800; text-decoration: none; color: var(--primary-color); }
+
+        .skills-grid { display: flex; gap: 40px; margin-top: 10px; }
+        .skills-col { flex: 1; }
+        .skills-category-header { 
+            font-weight: 800; font-size: 0.95rem; text-transform: uppercase; 
+            margin-bottom: 15px; display: block; color: #4b5563; 
+            border-bottom: 1px solid #e5e7eb; padding-bottom: 5px;
+        }
+        .skill-tag {
+            display: inline-block; background: #f9fafb; border: 1px solid #e5e7eb;
+            padding: 4px 12px; border-radius: 4px; margin: 0 8px 10px 0;
+            font-size: 0.9rem; font-weight: 600;
+        }
+
+        #printSpacer { display: none; }
+
+        [lang="cz"] { display: none; }
+        body.lang-cz [lang="en"] { display: none; }
+        body.lang-cz [lang="cz"] { display: block; }
+
+        /* PDF / PRINT OPTIMIZATION */
+        @page { size: A4; margin: 0; }
+        
+        @media print {
+            body { 
+                background: white; 
+                -webkit-print-color-adjust: exact !important; 
+                print-color-adjust: exact !important; 
+            }
+            .nav-tools { display: none !important; }
+            .cv-container {
+                margin: 0 !important;
+                padding: 15mm 20mm !important;
+                width: 100% !important;
+                max-width: 100% !important;
+                box-shadow: none !important;
+            }
+            .project-link::after { content: " (" attr(href) ")"; font-weight: 400; font-size: 0.8rem; }
+            #printSpacer { display: block !important; height: 2mm; break-before: page; }
+            a { color: inherit !important; text-decoration: none !important; }
+            .project-link { color: var(--primary-color) !important; }
+        }
+    </style>
+</head>
+<body class="lang-en">
+
+    <div class="nav-tools">
+        <button class="btn-tool" onclick="toggleLang()">
+            <span id="langBtnText">Switch to CZ</span>
+        </button>
+        <button class="btn-tool" onclick="window.print()">
+            EXPORT PDF
+        </button>
+    </div>
+
+    <div class="cv-container">
+        <header>
+            <h1>Filip Jediný</h1>
+            <div class="subtitle">
+                <span lang="en">Software Engineer & Data Scientist</span>
+                <span lang="cz">Software Engineer & Data Scientist</span>
+            </div>
+            <div class="contact-bar">
+                <span><i class="fas fa-map-marker-alt"></i> Prague, CZ</span>
+                <a href="mailto:jedinyp@proton.me"><i class="fas fa-envelope"></i> jedinyp@proton.me</a>
+                <a href="https://github.com/jedinyphilip"><i class="fab fa-github"></i> github.com/jedinyphilip</a>
+                <a href="https://jedinyphilip.github.io"><i class="fas fa-globe"></i> jedinyphilip.github.io</a>
+            </div>
+        </header>
+
+        <section>
+            <h2 class="section-title">
+                <span lang="en">Summary</span>
+                <span lang="cz">Shrnutí</span>
+            </h2>
+            <p>
+                <span lang="en">Software Engineer and Data Scientist with a background in Biophysics from Charles University. Specializing in high-performance computing, backend systems, and machine learning. Experienced in architecting production-ready cloud environments and optimizing laboratory numerical methods.</span>
+                <span lang="cz">Softwarový inženýr a datový vědec s praxí v oboru biofyziky na Karlově univerzitě. Specializuje se na vysoce výkonné výpočty, backendové systémy a strojové učení. Má zkušenosti s navrhováním cloudových prostředí připravených pro produkční použití a optimalizací laboratorních numerických metod.</span>
+            </p>
+        </section>
+
+        <section>
+            <h2 class="section-title">
+                <span lang="en">Professional Experience</span>
+                <span lang="cz">Pracovní zkušenosti</span>
+            </h2>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <div class="header-left">
+                        <span class="entry-title">Viagem a.s.</span>
+                        <span class="entry-sub">
+                            <span lang="en">Lead Programmer (Promoted from Software Developer)</span>
+                            <span lang="cz">Hlavní programátor (povýšeno z pozice Software Developer)</span>
+                        </span>
+                    </div>
+                    <span class="entry-date">2024 — Present</span>
+                </div>
+                <ul>
+                    <li lang="en">Development of complex real estate valuation models utilizing satellite imagery, OpenData initiatives, and various neural architectures (CNN/XGB/DNN), increasing pricing accuracy and yield.</li>
+                    <li lang="cz">Vývoj komplexních modelů oceňování nemovitostí pomocí satelitních snímků, iniciativy OpenData, a několik neuronových architektur (CNN/XGB/DNN).</li>
+                    <li lang="en">Python/Node.js APIs design to bridge cloud services with on-premise infrastructure.</li>
+                    <li lang="cz">Návrh API v Python/Node.js pro propojení cloudových služeb s vnitrofiremní infrastrukturou.</li>
+                    <li lang="en">Linux server infrastructure and networking management (security/tunnels/proxies) across the corporate environment.</li>
+                    <li lang="cz">Správa infrastruktury serverů Linux a sítí (bezpečnost/tunely/proxy) v celém podnikovém prostředí.</li>
+                    <li lang="en">Contribution to the development of internal CRM system and lead role in the development of a high-traffic real-estate portal (full-stack).</li>
+                    <li lang="cz">Práce na vývoji interního CRM systému a vedení vývoje high-traffic realitního portálu (full-stack).</li>
+                </ul>
+            </div>
+
+            <div class="entry" style="margin-top: 10px;">
+                <div class="entry-header">
+                    <div class="header-left">
+                        <span class="entry-title">Charles University (MFF UK)</span>
+                        <span class="entry-sub">
+                            <span lang="en">Research Intern (Surface and Plasma Science)</span>
+                            <span lang="cz">Výzkumný stážista (Katedra Fyziky Povrchů a Plazmatu)</span>
+                        </span>
+                    </div>
+                    <span class="entry-date">2021 — 2022</span>
+                </div>
+                <ul>
+                    <li lang="en">Development of numerical MLE algorithm to fit Poisson-distributed experimental data.</li>
+                    <li lang="cz">Vývoj numerického MLE algoritmu pro fitování experimentálních dat.</li>
+                    <li lang="en">Achievement of 2x improvement in fitting accuracy compared to standard lab procedures.</li>
+                    <li lang="cz">Dosáhnutí 2x vyšší přesnosti fitování výsledků oproti standardním laboratorním postupům.</li>
+                </ul>
+            </div>
+        </section>
+        
+        <div id="printSpacer"></div>
+
+        <section>
+            <h2 class="section-title">
+                <span lang="en">Selected Technical Projects</span>
+                <span lang="cz">Vybrané projekty</span>
+            </h2>
+
+            <div class="project-box">
+                <div class="project-title-row">
+                    <strong>GPU4PySCF Blackwell Edition</strong>
+                    <a href="https://github.com/jedinyphilip/gpu4pyscf-bwcu13w64" class="project-link">GitHub</a>
+                </div>
+                <p class="small">
+                    <span lang="en">A high-performance Dockerized build environment to enable PySCF support for NVIDIA RTX 50-series (Blackwell) architecture using CUDA 13.0.</span>
+                    <span lang="cz">Vysoce výkonné prostředí pro podporu PySCF na architektuře NVIDIA RTX 50 (Blackwell) s CUDA 13.0.</span>
+                </p>
+            </div>
+
+            <div class="project-box">
+                <div class="project-title-row">
+                    <strong>ASP.NET Kubernetes Toolchain</strong>
+                    <a href="https://github.com/jedinyphilip/aspnet-kubernetes-bp" class="project-link">GitHub</a>
+                </div>
+                <p class="small">
+                    <span lang="en">Zero-local-dependency development environment using Kubernetes-in-Docker (Kind) with live Win/Linux path translation.</span>
+                    <span lang="cz">Vývojové prostředí s nulovými závislostmi pomocí K8s-in-Docker s live překladem cest pro synchronizaci.</span>
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">
+                <span lang="en">Education</span>
+                <span lang="cz">Vzdělání</span>
+            </h2>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="entry-title">Charles University (MFF UK)</span>
+                    <span class="entry-date">2025 — Present</span>
+                </div>
+                <span class="entry-sub">
+                    <span lang="en">Master of Biophysics</span>
+                    <span lang="cz">Magistr biofyziky</span>
+                </span>
+            </div>
+
+            <div class="entry">
+                <div class="entry-header">
+                    <span class="entry-title">Charles University (MFF UK)</span>
+                    <span class="entry-date">2020 — 2025</span>
+                </div>
+                <span class="entry-sub">
+                    <span lang="en">Bachelor of Physics (Finished)</span>
+                    <span lang="cz">Bakalář fyziky (Absolvováno)</span>
+                </span>
+                <p class="small">
+                    <strong><span lang="en">Thesis:</span><span lang="cz">Práce:</span></strong>
+                    <span lang="en">Machine Learning Approach to Reaction-Diffusion Equations in Plasma.</span>
+                    <span lang="cz">Využití strojového učení pro řešení reakčně-difuzních rovnic v plazmatu.</span>
+                </p>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="section-title">
+                <span lang="en">Technical Skills</span>
+                <span lang="cz">Dovednosti</span>
+            </h2>
+            <div class="skills-grid">
+                <div class="skills-col">
+                    <span class="skills-category-header" lang="en">Programming & Data</span>
+                    <span class="skills-category-header" lang="cz">Programování a data</span>
+                    <span class="skill-tag">Python</span><span class="skill-tag">C# (.NET 8)</span><span class="skill-tag">JavaScript / Node.js</span><span class="skill-tag">C++</span><span class="skill-tag">PHP</span><span class="skill-tag">MySQL / PostgreSQL</span><span class="skill-tag">Mathematical Modeling</span>
+                </div>
+                <div class="skills-col">
+                    <span class="skills-category-header" lang="en">Infrastructure & Tools</span>
+                    <span class="skills-category-header" lang="cz">Infrastruktura a nástroje</span>
+                    <span class="skill-tag">Kubernetes (Kind)</span><span class="skill-tag">Docker</span><span class="skill-tag">Linux SysAdmin</span><span class="skill-tag">CUDA</span><span class="skill-tag">Redis</span><span class="skill-tag">Git / GitHub</span><span class="skill-tag">Bash / Powershell</span>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <script>
+        function toggleLang() {
+            const body = document.body;
+            const btnText = document.getElementById('langBtnText');
+            body.classList.toggle('lang-cz');
+            btnText.innerText = body.classList.contains('lang-cz') ? "Switch to EN" : "Switch to CZ";
+        }
+    </script>
+</body>
+</html>
