@@ -121,15 +121,9 @@
 
         #printSpacer { display: none; }
 
-        [lang="cz"] { display: none; }
-        body.lang-cz [lang="en"] { display: none; }
-        body.lang-cz [lang="cz"] { display: block; }
-        body.lang-cz li[lang="cz"] {
-            display: list-item;
-        }
-        body.lang-cz span[lang="cz"] {
-            display: inline;
-        }
+        [lang="cz"] { visibility: hidden; position: absolute; }
+        body.lang-cz [lang="en"] { visibility: hidden; position: absolute; }
+        body.lang-cz [lang="cz"] { visibility: visible; position: static; }
 
         @page { size: A4; margin: 0; }
         
